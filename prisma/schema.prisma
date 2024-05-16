@@ -34,6 +34,7 @@ model Session {
   sessionToken String   @unique
   userId       String
   expires      DateTime
+  
   user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
@@ -47,34 +48,31 @@ model User {
   roleId        String?
   accounts      Account[]
   sessions      Session[]
-  materials     Material[]
-  movements     InventoryMovement[]
+  reservas      Reserva[]
+
 }
 
-model Material {
-  id        String              @id @default(cuid())
-  name      String              @unique
-  quantity  Int
-  createdBy User                @relation(fields: [userId], references: [id])
-  userId    String
-  movements InventoryMovement[]
-  createdAt DateTime            @default(now())
-  updatedAt DateTime            @updatedAt
+model Habitacion {
+  numero_habitacion Int @id
+  costo_dia Decimal @db.Decimal(10, 2)
+  libre Boolean
+  reservas Reserva[]
 }
 
-enum Enum_MovementType {
-  ENTRADA
-  SALIDA
+
+model Reserva {
+  id                            String         @id @default(cuid())
+  habitacion                    Habitacion   @relation(fields: [numero_habitacion], references: [numero_habitacion])
+  numero_habitacion             Int
+  usuario                       User         @relation(fields: [usuarioId], references: [id])
+  usuarioId                     String    
+  estado                        EstadoReserva
 }
 
-model InventoryMovement {
-  id           String            @id @default(cuid())
-  movementType Enum_MovementType
-  quantity     Int
-  material     Material          @relation(fields: [materialId], references: [id])
-  materialId   String
-  createdBy    User              @relation(fields: [userId], references: [id])
-  userId       String
+enum EstadoReserva {
+  reservado
+  checkin
+  checkout
 }
 
 enum Enum_RoleName {
