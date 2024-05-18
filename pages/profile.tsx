@@ -1,6 +1,6 @@
-// pages/profile.tsx
+// pages/profile.tsx codigo de prueba 
 
-import { SessionProvider, useSession } from 'next-auth/react';
+import { SessionProvider, signOut, useSession } from 'next-auth/react';
 
 
 export default function ProfilePagina() {
@@ -41,7 +41,9 @@ return (
                 <p>Nombre: {user.name}</p>
                 <p>Email: {user.email}</p>
                 <p>Rol: {role}</p>
-                {/* Otros datos del perfil */}
+                <button onClick={() => signOut({ callbackUrl: 'http://localhost:3000' })}>
+                  Logout
+                </button>
             </>
         )}
     </div>

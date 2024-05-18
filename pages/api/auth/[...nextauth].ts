@@ -36,12 +36,12 @@ const options: NextAuthOptions = {
       clientId: `${process.env.AUTH0_CLIENT_ID}`,
       clientSecret: `${process.env.AUTH0_CLIENT_SECRET}`,
       profile(profile) {
+        console.log(profile);
         return {// agregar el campo role
           id: profile.sub,
           name: profile.name,
           email: profile.email,
-          role: profile.role? profile.role : 'USER',
-          emailVerified: new Date(),
+          role: profile.role ? profile.role : 'USER',
         };
       }
     }),
