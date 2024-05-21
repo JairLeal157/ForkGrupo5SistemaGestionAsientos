@@ -35,7 +35,12 @@ const options: NextAuthOptions = {
       authorization: `https://${process.env.AUTH0_DOMAIN}/authorize?response_type=code&prompt=login`,
       clientId: `${process.env.AUTH0_CLIENT_ID}`,
       clientSecret: `${process.env.AUTH0_CLIENT_SECRET}`,
-      profile(profile) {
+      async profile(profile) {
+        const user = await prisma.user.findFirst({
+          where: {
+            email: profile.email,
+          },
+        });
         console.log(profile);
         return {// agregar el campo role
           id: profile.sub,
