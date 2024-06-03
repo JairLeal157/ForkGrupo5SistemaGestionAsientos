@@ -41,7 +41,6 @@ const options: NextAuthOptions = {
             email: profile.email,
           },
         });
-        console.log(profile);
         return {// agregar el campo role
           id: profile.sub,
           name: profile.name,
