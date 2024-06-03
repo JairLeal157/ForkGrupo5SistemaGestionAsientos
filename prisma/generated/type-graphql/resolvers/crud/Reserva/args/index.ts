@@ -1,0 +1,14 @@
+export { AggregateReservaArgs } from "./AggregateReservaArgs";
+export { CreateManyReservaArgs } from "./CreateManyReservaArgs";
+export { CreateOneReservaArgs } from "./CreateOneReservaArgs";
+export { DeleteManyReservaArgs } from "./DeleteManyReservaArgs";
+export { DeleteOneReservaArgs } from "./DeleteOneReservaArgs";
+export { FindFirstReservaArgs } from "./FindFirstReservaArgs";
+export { FindFirstReservaOrThrowArgs } from "./FindFirstReservaOrThrowArgs";
+export { FindManyReservaArgs } from "./FindManyReservaArgs";
+export { FindUniqueReservaArgs } from "./FindUniqueReservaArgs";
+export { FindUniqueReservaOrThrowArgs } from "./FindUniqueReservaOrThrowArgs";
+export { GroupByReservaArgs } from "./GroupByReservaArgs";
+export { UpdateManyReservaArgs } from "./UpdateManyReservaArgs";
+export { UpdateOneReservaArgs } from "./UpdateOneReservaArgs";
+export { UpsertOneReservaArgs } from "./UpsertOneReservaArgs";
