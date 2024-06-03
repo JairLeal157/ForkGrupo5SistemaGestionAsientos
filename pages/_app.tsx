@@ -1,9 +1,12 @@
-import '@/styles/globals.css';
+import "@/styles/globals.css";
+import { Theme } from "@radix-ui/themes";
+import "@radix-ui/themes/styles.css";
+import type { AppProps } from "next/app";
 
-const App = ({ Component, pageProps: { session, ...pageProps } }: any) => {
+export default function App({ Component, pageProps }: AppProps) {
   return (
-    <Component {...pageProps} />
+    <Theme grayColor="slate" accentColor="bronze" radius="large" scaling="95%">
+      <Component {...pageProps} />
+    </Theme>
   );
-};
-
-export default App;
+}
