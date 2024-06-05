@@ -1,33 +1,36 @@
-import { Button, Flex, Heading, Text } from "@radix-ui/themes";
+import { Avatar, Button, Flex, Heading, Text, Tooltip } from "@radix-ui/themes";
 import { ArrowRightIcon, ArrowTopRightIcon } from "@radix-ui/react-icons";
 import Link from "next/link";
+import { signIn, useSession } from "next-auth/react";
 
 const LandingModule = () => {
+  const { data } = useSession();
+
+  console.log(data);
+
   return (
     <main className="min-h-screen flex flex-col">
       <header className="border-b-[1px]">
         <Flex width="80%" mx="auto" py="4" justify="between" align="center">
           <Heading as="h1">HotelEase</Heading>
-          <nav className="">
-            <ul className="flex gap-4">
-              <li>
-                <Link href="/">Check in</Link>
-              </li>
-              <li>
-                <Link href="/">Check out</Link>
-              </li>
-              <li>
-                <Link href="/">Reservaciones</Link>
-              </li>
-              <li>
-                <Link href="/">Administrar</Link>
-              </li>
-            </ul>
-          </nav>
-          <Button color="gray" highContrast>
-            <ArrowTopRightIcon />
-            Iniciar Sesión
-          </Button>
+          <Link
+            className="border-b-[2px] border-transparent hover:border-b-[2px] hover:border-[#3d0f00ab] transition-all"
+            href="/dashboard">
+            Dashboard
+          </Link>
+          {data ? (
+            <Avatar
+              size="2"
+              src={data.user?.image as string}
+              fallback={data.user?.name?.at(0) as string}
+              highContrast
+            />
+          ) : (
+            <Button onClick={() => signIn("auth0")} color="gray" highContrast>
+              <ArrowTopRightIcon />
+              Iniciar Sesión
+            </Button>
+          )}
         </Flex>
       </header>
       <section className="flex-1 flex w-[80%] gap-8 mx-auto items-center justify-between">
