@@ -20,6 +20,9 @@ type Habitacion {
 }
 
 type Query {
+  reserva(reservaId: String!): Reserva
+  reservas: [Reserva]
+  reservasPorEstado(estado: EstadoReserva!): [Reserva]
   user(userId: String!): User
   users: [User]
 }

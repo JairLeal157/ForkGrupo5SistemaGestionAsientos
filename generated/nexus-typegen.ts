@@ -78,6 +78,9 @@ export interface NexusGenFieldTypes {
     reservas: Array<NexusGenRootTypes['Reserva'] | null> | null; // [Reserva]
   }
   Query: { // field return type
+    reserva: NexusGenRootTypes['Reserva'] | null; // Reserva
+    reservas: Array<NexusGenRootTypes['Reserva'] | null> | null; // [Reserva]
+    reservasPorEstado: Array<NexusGenRootTypes['Reserva'] | null> | null; // [Reserva]
     user: NexusGenRootTypes['User'] | null; // User
     users: Array<NexusGenRootTypes['User'] | null> | null; // [User]
   }
@@ -105,6 +108,9 @@ export interface NexusGenFieldTypeNames {
     reservas: 'Reserva'
   }
   Query: { // field return type name
+    reserva: 'Reserva'
+    reservas: 'Reserva'
+    reservasPorEstado: 'Reserva'
     user: 'User'
     users: 'User'
   }
@@ -127,6 +133,12 @@ export interface NexusGenFieldTypeNames {
 
 export interface NexusGenArgTypes {
   Query: {
+    reserva: { // args
+      reservaId: string; // String!
+    }
+    reservasPorEstado: { // args
+      estado: NexusGenEnums['EstadoReserva']; // EstadoReserva!
+    }
     user: { // args
       userId: string; // String!
     }
