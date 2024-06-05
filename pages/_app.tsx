@@ -13,7 +13,7 @@ const client = new ApolloClient({
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
-    <Theme grayColor="slate" accentColor="bronze" radius="large" scaling="95%">
+    <Theme grayColor="slate" accentColor="iris" radius="large" scaling="95%">
       <SessionProvider>
         <ApolloProvider client={client}>
           <Component {...pageProps} />
