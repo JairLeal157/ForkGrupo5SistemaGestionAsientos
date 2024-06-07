@@ -46,11 +46,11 @@ export interface NexusGenObjects {
     libre?: boolean | null; // Boolean
     numero_habitacion?: number | null; // Int
   }
+  Mutation: {};
   Query: {};
   Reserva: { // root type
     estado?: NexusGenEnums['EstadoReserva'] | null; // EstadoReserva
     id?: string | null; // String
-    numero_habitacion?: number | null; // Int
   }
   User: { // root type
     email?: string | null; // String
@@ -77,7 +77,17 @@ export interface NexusGenFieldTypes {
     numero_habitacion: number | null; // Int
     reservas: Array<NexusGenRootTypes['Reserva'] | null> | null; // [Reserva]
   }
+  Mutation: { // field return type
+    checkinReserva: NexusGenRootTypes['Reserva'] | null; // Reserva
+    checkoutReserva: NexusGenRootTypes['Reserva'] | null; // Reserva
+    createHabitacion: NexusGenRootTypes['Habitacion'] | null; // Habitacion
+    createReserva: NexusGenRootTypes['Reserva'] | null; // Reserva
+    updateUser: NexusGenRootTypes['User'] | null; // User
+  }
   Query: { // field return type
+    habitacion: NexusGenRootTypes['Habitacion'] | null; // Habitacion
+    habitaciones: Array<NexusGenRootTypes['Habitacion'] | null> | null; // [Habitacion]
+    habitacionesPorEstado: Array<NexusGenRootTypes['Habitacion'] | null> | null; // [Habitacion]
     reserva: NexusGenRootTypes['Reserva'] | null; // Reserva
     reservas: Array<NexusGenRootTypes['Reserva'] | null> | null; // [Reserva]
     reservasPorEstado: Array<NexusGenRootTypes['Reserva'] | null> | null; // [Reserva]
@@ -88,7 +98,6 @@ export interface NexusGenFieldTypes {
     estado: NexusGenEnums['EstadoReserva'] | null; // EstadoReserva
     habitacion: NexusGenRootTypes['Habitacion'] | null; // Habitacion
     id: string | null; // String
-    numero_habitacion: number | null; // Int
     usuario: NexusGenRootTypes['User'] | null; // User
   }
   User: { // field return type
@@ -107,7 +116,17 @@ export interface NexusGenFieldTypeNames {
     numero_habitacion: 'Int'
     reservas: 'Reserva'
   }
+  Mutation: { // field return type name
+    checkinReserva: 'Reserva'
+    checkoutReserva: 'Reserva'
+    createHabitacion: 'Habitacion'
+    createReserva: 'Reserva'
+    updateUser: 'User'
+  }
   Query: { // field return type name
+    habitacion: 'Habitacion'
+    habitaciones: 'Habitacion'
+    habitacionesPorEstado: 'Habitacion'
     reserva: 'Reserva'
     reservas: 'Reserva'
     reservasPorEstado: 'Reserva'
@@ -118,7 +137,6 @@ export interface NexusGenFieldTypeNames {
     estado: 'EstadoReserva'
     habitacion: 'Habitacion'
     id: 'String'
-    numero_habitacion: 'Int'
     usuario: 'User'
   }
   User: { // field return type name
@@ -132,7 +150,35 @@ export interface NexusGenFieldTypeNames {
 }
 
 export interface NexusGenArgTypes {
+  Mutation: {
+    checkinReserva: { // args
+      reservaId: string; // String!
+    }
+    checkoutReserva: { // args
+      reservaId: string; // String!
+    }
+    createHabitacion: { // args
+      costoDia: number; // Float!
+      libre: boolean; // Boolean!
+      numeroHabitacion: number; // Int!
+    }
+    createReserva: { // args
+      numeroHabitacion: number; // Int!
+      usuarioId: string; // String!
+    }
+    updateUser: { // args
+      name?: string | null; // String
+      role?: NexusGenEnums['Enum_RoleName'] | null; // Enum_RoleName
+      userId: string; // String!
+    }
+  }
   Query: {
+    habitacion: { // args
+      numeroHabitacion: number; // Int!
+    }
+    habitacionesPorEstado: { // args
+      libre: boolean; // Boolean!
+    }
     reserva: { // args
       reservaId: string; // String!
     }

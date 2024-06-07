@@ -19,7 +19,18 @@ type Habitacion {
   reservas: [Reserva]
 }
 
+type Mutation {
+  checkinReserva(reservaId: String!): Reserva
+  checkoutReserva(reservaId: String!): Reserva
+  createHabitacion(costoDia: Float!, libre: Boolean!, numeroHabitacion: Int!): Habitacion
+  createReserva(numeroHabitacion: Int!, usuarioId: String!): Reserva
+  updateUser(name: String, role: Enum_RoleName, userId: String!): User
+}
+
 type Query {
+  habitacion(numeroHabitacion: Int!): Habitacion
+  habitaciones: [Habitacion]
+  habitacionesPorEstado(libre: Boolean!): [Habitacion]
   reserva(reservaId: String!): Reserva
   reservas: [Reserva]
   reservasPorEstado(estado: EstadoReserva!): [Reserva]
@@ -31,7 +42,6 @@ type Reserva {
   estado: EstadoReserva
   habitacion: Habitacion
   id: String
-  numero_habitacion: Int
   usuario: User
 }
 

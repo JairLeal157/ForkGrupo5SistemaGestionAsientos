@@ -16,7 +16,6 @@ export const Reserva = objectType({
           }).habitacion()
         }
       })
-      t.int('numero_habitacion')
       t.field('usuario', {
         type: "User",
         async resolve(_parent, _args, ctx) {
