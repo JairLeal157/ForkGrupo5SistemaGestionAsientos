@@ -22,5 +22,18 @@ export const MutationUser = extendType({
         return updatedUser;
       }
     });
+    t.field('deleteUser', {
+      type: 'User',
+      args: {
+        userId: nonNull(stringArg())
+      },
+      async resolve(_parent, args, ctx) {
+        const deletedUser = await ctx.prisma.user.delete({
+          where: { id: args.userId }
+        });
+        return deletedUser;
+      }
+    });
   }
 });
+

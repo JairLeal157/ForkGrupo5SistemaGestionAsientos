@@ -4,6 +4,7 @@ export const Habitacion = objectType({
     definition(t) {
       t.int('numero_habitacion')
       t.boolean('libre')
+      t.float('costo_dia')
       t.list.field('reservas', {
         type: "Reserva",
         async resolve(_parent, _args, ctx) {

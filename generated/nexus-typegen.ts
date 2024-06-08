@@ -43,6 +43,7 @@ export interface NexusGenScalars {
 
 export interface NexusGenObjects {
   Habitacion: { // root type
+    costo_dia?: number | null; // Float
     libre?: boolean | null; // Boolean
     numero_habitacion?: number | null; // Int
   }
@@ -73,6 +74,7 @@ export type NexusGenAllTypes = NexusGenRootTypes & NexusGenScalars & NexusGenEnu
 
 export interface NexusGenFieldTypes {
   Habitacion: { // field return type
+    costo_dia: number | null; // Float
     libre: boolean | null; // Boolean
     numero_habitacion: number | null; // Int
     reservas: Array<NexusGenRootTypes['Reserva'] | null> | null; // [Reserva]
@@ -82,6 +84,8 @@ export interface NexusGenFieldTypes {
     checkoutReserva: NexusGenRootTypes['Reserva'] | null; // Reserva
     createHabitacion: NexusGenRootTypes['Habitacion'] | null; // Habitacion
     createReserva: NexusGenRootTypes['Reserva'] | null; // Reserva
+    deleteUser: NexusGenRootTypes['User'] | null; // User
+    eliminarReserva: NexusGenRootTypes['Reserva'] | null; // Reserva
     updateUser: NexusGenRootTypes['User'] | null; // User
   }
   Query: { // field return type
@@ -91,6 +95,8 @@ export interface NexusGenFieldTypes {
     reserva: NexusGenRootTypes['Reserva'] | null; // Reserva
     reservas: Array<NexusGenRootTypes['Reserva'] | null> | null; // [Reserva]
     reservasPorEstado: Array<NexusGenRootTypes['Reserva'] | null> | null; // [Reserva]
+    reservasPorHabitacionYEstado: Array<NexusGenRootTypes['Reserva'] | null> | null; // [Reserva]
+    reservasPorUsuarioYEstado: Array<NexusGenRootTypes['Reserva'] | null> | null; // [Reserva]
     user: NexusGenRootTypes['User'] | null; // User
     users: Array<NexusGenRootTypes['User'] | null> | null; // [User]
   }
@@ -112,6 +118,7 @@ export interface NexusGenFieldTypes {
 
 export interface NexusGenFieldTypeNames {
   Habitacion: { // field return type name
+    costo_dia: 'Float'
     libre: 'Boolean'
     numero_habitacion: 'Int'
     reservas: 'Reserva'
@@ -121,6 +128,8 @@ export interface NexusGenFieldTypeNames {
     checkoutReserva: 'Reserva'
     createHabitacion: 'Habitacion'
     createReserva: 'Reserva'
+    deleteUser: 'User'
+    eliminarReserva: 'Reserva'
     updateUser: 'User'
   }
   Query: { // field return type name
@@ -130,6 +139,8 @@ export interface NexusGenFieldTypeNames {
     reserva: 'Reserva'
     reservas: 'Reserva'
     reservasPorEstado: 'Reserva'
+    reservasPorHabitacionYEstado: 'Reserva'
+    reservasPorUsuarioYEstado: 'Reserva'
     user: 'User'
     users: 'User'
   }
@@ -166,6 +177,12 @@ export interface NexusGenArgTypes {
       numeroHabitacion: number; // Int!
       usuarioId: string; // String!
     }
+    deleteUser: { // args
+      userId: string; // String!
+    }
+    eliminarReserva: { // args
+      reservaId: string; // String!
+    }
     updateUser: { // args
       name?: string | null; // String
       role?: NexusGenEnums['Enum_RoleName'] | null; // Enum_RoleName
@@ -184,6 +201,14 @@ export interface NexusGenArgTypes {
     }
     reservasPorEstado: { // args
       estado: NexusGenEnums['EstadoReserva']; // EstadoReserva!
+    }
+    reservasPorHabitacionYEstado: { // args
+      estado: NexusGenEnums['EstadoReserva']; // EstadoReserva!
+      numeroHabitacion: number; // Int!
+    }
+    reservasPorUsuarioYEstado: { // args
+      estado: NexusGenEnums['EstadoReserva']; // EstadoReserva!
+      userId: string; // String!
     }
     user: { // args
       userId: string; // String!

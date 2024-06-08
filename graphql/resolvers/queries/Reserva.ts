@@ -40,5 +40,43 @@ export const QueriesReserva = extendType({
         })
       }
     });
+
+    // buscar reservas por habitación y estado
+    t.list.field('reservasPorHabitacionYEstado', {
+      type: 'Reserva',
+      args: {
+        numeroHabitacion: nonNull(arg({ type: 'Int' })),
+        estado: nonNull(arg({ type: 'EstadoReserva' }))
+      },
+      async resolve(_parent, args, ctx) {
+        return await ctx.prisma.reserva.findMany({
+          where: {
+            habitacion: {
+              numero_habitacion: args.numeroHabitacion
+            },
+            estado: args.estado
+          }
+        })
+      }
+    });
+
+    // buscar reservas por usuario y estado
+    t.list.field('reservasPorUsuarioYEstado', {
+      type: 'Reserva',
+      args: {
+        userId: nonNull(arg({ type: 'String' })),
+        estado: nonNull(arg({ type: 'EstadoReserva' }))
+      },
+      async resolve(_parent, args, ctx) {
+        return await ctx.prisma.reserva.findMany({
+          where: {
+            usuario: {
+              id: args.userId
+            },
+            estado: args.estado
+          }
+        })
+      }
+    });
   }
 });

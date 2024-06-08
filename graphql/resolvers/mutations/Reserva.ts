@@ -55,5 +55,24 @@ export const MutationReserva = extendType({
         return reserva;
       }
     });
+
+    t.field('eliminarReserva', {
+      type: 'Reserva',
+      args: {
+        reservaId: nonNull(stringArg())
+      },
+      async resolve(_parent, args, ctx) {
+        const reserva = await ctx.prisma.reserva.findUnique({
+          where: { id: args.reservaId }
+        });
+        await ctx.prisma.habitacion.update({
+          where: { numero_habitacion: reserva.numero_habitacion },
+          data: { libre: true }
+        });
+        return await ctx.prisma.reserva.delete({
+          where: { id: args.reservaId }
+        });
+      }
+    });
   }
 });

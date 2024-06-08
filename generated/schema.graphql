@@ -14,6 +14,7 @@ enum EstadoReserva {
 }
 
 type Habitacion {
+  costo_dia: Float
   libre: Boolean
   numero_habitacion: Int
   reservas: [Reserva]
@@ -24,6 +25,8 @@ type Mutation {
   checkoutReserva(reservaId: String!): Reserva
   createHabitacion(costoDia: Float!, libre: Boolean!, numeroHabitacion: Int!): Habitacion
   createReserva(numeroHabitacion: Int!, usuarioId: String!): Reserva
+  deleteUser(userId: String!): User
+  eliminarReserva(reservaId: String!): Reserva
   updateUser(name: String, role: Enum_RoleName, userId: String!): User
 }
 
@@ -34,6 +37,8 @@ type Query {
   reserva(reservaId: String!): Reserva
   reservas: [Reserva]
   reservasPorEstado(estado: EstadoReserva!): [Reserva]
+  reservasPorHabitacionYEstado(estado: EstadoReserva!, numeroHabitacion: Int!): [Reserva]
+  reservasPorUsuarioYEstado(estado: EstadoReserva!, userId: String!): [Reserva]
   user(userId: String!): User
   users: [User]
 }
