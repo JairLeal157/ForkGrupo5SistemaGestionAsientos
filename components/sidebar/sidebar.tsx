@@ -1,16 +1,18 @@
-import { ExitIcon } from "@radix-ui/react-icons";
-import { Badge, Button } from "@radix-ui/themes";
-import Link from "next/link";
-import { sidebarData } from "./sidebar-data";
-import { useRouter } from "next/router";
+/* eslint-disable import/no-default-export */
+
+
 import UserBasicInfo from "@/modules/users/profile/user-basic-info";
+import { ExitIcon } from "@radix-ui/react-icons";
+import { Button } from "@radix-ui/themes";
 import { signOut, useSession } from "next-auth/react";
+import Link from "next/link";
+import { useRouter } from "next/router";
+import { sidebarData } from "./sidebar-data";
 
 const Sidebar = () => {
   const { data } = useSession();
   const router = useRouter();
   if (!data) return null;
-  console.log("Sidebar -> ", sidebarData[data.user.role]);
   return (
     <aside className="h-full min-w-[300px] w-fit py-8 px-4 border border-l-2 flex flex-col gap-4">
       <UserBasicInfo />

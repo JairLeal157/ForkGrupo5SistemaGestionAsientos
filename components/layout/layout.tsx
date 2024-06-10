@@ -1,8 +1,9 @@
-import { useSession } from "next-auth/react";
-import Sidebar from "../sidebar/sidebar";
-import HashLoader from "react-spinners/HashLoader";
-import { useEffect } from "react";
+/* eslint-disable import/no-default-export */
 
+import Sidebar from "@/components/sidebar/sidebar";
+import { useSession } from "next-auth/react";
+import { useEffect } from "react";
+import HashLoader from "react-spinners/HashLoader";
 interface LayoutProps {
   children: React.ReactNode;
 }
@@ -35,8 +36,6 @@ const Layout = ({ children }: LayoutProps) => {
       </div>
     );
   }
-
-  console.log(data);
 
   return (
     <main className="flex h-screen">
