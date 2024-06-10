@@ -13,23 +13,23 @@ const TransactionsModule = () => {
   const { data: dataHab } = useGetHabitaciones();
   const [transactions, setTransactions] = useState<Reserva[]>([]);
   const [habitacion, setHabitacion] = useState<string>("all");
-  const { data: dataHabitacion } = useGetReservasByHabitacion(
-    Number(habitacion)
-  );
+  const { data: dataHabitacion, loading: loadingHab } =
+    useGetReservasByHabitacion(Number(habitacion));
 
   useEffect(() => {
+    console.log("habitacion", habitacion);
     if (habitacion === "all") {
       if (data) {
         setTransactions(data.reservas);
       }
+    } else {
+      if (dataHabitacion) {
+        setTransactions(dataHabitacion.habitacion.reservas);
+      }
     }
-    if (dataHabitacion) {
-      setTransactions(dataHabitacion.habitacion.reservas);
-    }
-  }, [habitacion]);
+  }, [habitacion, data, dataHabitacion]);
 
   const handleHabitacion = (habitacion: string) => {
-    if (habitacion === "all") return;
     setHabitacion(habitacion);
   };
 
@@ -40,7 +40,7 @@ const TransactionsModule = () => {
       </Heading>
 
       <section className="my-4">
-        <Select.Root defaultValue="all">
+        <Select.Root onValueChange={handleHabitacion} defaultValue="all">
           <Select.Trigger />
           <Select.Content position="popper">
             <Select.Group>
@@ -58,7 +58,7 @@ const TransactionsModule = () => {
       </section>
 
       <section>
-        {loading ? (
+        {loading || loadingHab ? (
           <p>Cargando...</p>
         ) : error ? (
           <p>Ha ocurrido un error</p>
