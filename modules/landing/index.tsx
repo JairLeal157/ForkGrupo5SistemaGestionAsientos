@@ -15,7 +15,7 @@ const LandingModule = () => {
           <Heading as="h1">HotelEase</Heading>
           <Link
             className="border-b-[2px] border-transparent hover:border-b-[2px] hover:border-[#3d0f00ab] transition-all"
-            href="/dashboard">
+            href="/dashboard/usuarios">
             Dashboard
           </Link>
           {data ? (

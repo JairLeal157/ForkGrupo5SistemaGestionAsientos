@@ -1,16 +1,15 @@
-import { Heading } from "@radix-ui/themes";
-import TableUsers from "./table-users";
-import { useGetAllUsers } from "@/hooks/useUser";
+import { useGetHabitaciones } from "@/hooks/useHabitacion";
+import { Button, Heading } from "@radix-ui/themes";
 import HashLoader from "react-spinners/HashLoader";
+import ListBedrooms from "./list-bedrooms";
+import { ReloadIcon } from "@radix-ui/react-icons";
 
-const ListUsersModule = () => {
-  const { data, error, loading } = useGetAllUsers();
-
-  console.log(data);
+const TabListBedrooms = () => {
+  const { data, error, loading } = useGetHabitaciones();
 
   if (loading) {
     return (
-      <div className="grid place-items-center w-full h-full">
+      <div className="grid place-items-center min-h-[500px] w-full h-full">
         <HashLoader
           color={"#000"}
           loading={loading}
@@ -29,8 +28,15 @@ const ListUsersModule = () => {
 
   return (
     <div>
-      <Heading as="h2" size="8" mb="6">
-        Lista de usuarios
+      <Heading as="h2" size="6" mt="4" mb="6">
+        Lista de habitaciones
+        <Button
+          mt="2"
+          variant="ghost"
+          ml="4"
+          onClick={() => window.location.reload()}>
+          <ReloadIcon />
+        </Button>
       </Heading>
       {error ? (
         <div className="bg-red-500 text-white p-4 rounded-md mb-4">
@@ -40,15 +46,15 @@ const ListUsersModule = () => {
         <div className="bg-red-500 text-white p-4 rounded-md mb-4">
           No se pudo cargar la lista de usuarios
         </div>
-      ) : data.users.length === 0 ? (
+      ) : data.habitaciones.length === 0 ? (
         <div className="bg-yellow-500 text-white p-4 rounded-md mb-4">
           No hay usuarios registrados
         </div>
       ) : (
-        <TableUsers listUsers={data.users} />
+        <ListBedrooms bedrooms={data.habitaciones} />
       )}
     </div>
   );
 };
 
-export default ListUsersModule;
+export default TabListBedrooms;

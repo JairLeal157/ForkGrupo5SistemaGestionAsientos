@@ -1,32 +1,31 @@
-import prisma from '@/config/prisma';
-import { PrismaAdapter } from '@next-auth/prisma-adapter';
-import { NextApiRequest, NextApiResponse } from 'next';
-import NextAuth, { NextAuthOptions } from 'next-auth';
-import Auth0Provider from 'next-auth/providers/auth0';
+import prisma from "@/config/prisma";
+import { PrismaAdapter } from "@next-auth/prisma-adapter";
+import { NextApiRequest, NextApiResponse } from "next";
+import NextAuth, { NextAuthOptions } from "next-auth";
+import Auth0Provider from "next-auth/providers/auth0";
 
 const options: NextAuthOptions = {
   callbacks: {
     async session({ session, user }) {
-        const usuario = await prisma.user.findUnique({
-          where: {
-            id: user.id,
-          },
-          select: {
-            role: true,
-          },
-        });
+      const usuario = await prisma.user.findUnique({
+        where: {
+          id: user.id,
+        },
+        select: {
+          role: true,
+        },
+      });
 
-        const role = usuario? usuario.role : 'USER';
-        return {
-            ...session,
-            user: {
-                ...user,
-                role,
-            },
-
-        };
+      const role = usuario ? usuario.role : "USER";
+      return {
+        ...session,
+        user: {
+          ...user,
+          role,
+        },
+      };
     },
-},
+  },
 
   providers: [
     Auth0Provider({
@@ -41,18 +40,20 @@ const options: NextAuthOptions = {
             email: profile.email,
           },
         });
-        return {// agregar el campo role
+        return {
+          // agregar el campo role
           id: profile.sub,
           name: profile.name,
           email: profile.email,
-          role: profile.role ? profile.role : 'USER',
+          role: profile.role ? profile.role : "USER",
         };
-      }
+      },
     }),
   ],
   secret: process.env.AUTH0_CLIENT_SECRET,
   adapter: PrismaAdapter(prisma),
 };
 
-export default (req: NextApiRequest, res: NextApiResponse) => NextAuth(req, res, options);
+export default (req: NextApiRequest, res: NextApiResponse) =>
+  NextAuth(req, res, options);
 export { options };

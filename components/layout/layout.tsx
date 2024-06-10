@@ -36,6 +36,8 @@ const Layout = ({ children }: LayoutProps) => {
     );
   }
 
+  console.log(data);
+
   return (
     <main className="flex h-screen">
       <Sidebar />

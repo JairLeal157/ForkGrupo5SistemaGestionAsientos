@@ -1,7 +1,13 @@
+import { UserRole, UserRoleConfig } from "@/types/types";
 import { Badge, Heading } from "@radix-ui/themes";
 import { Text } from "@radix-ui/themes/dist/esm/components/callout.js";
+import { useSession } from "next-auth/react";
 
 const UserBasicInfo = () => {
+  const { data } = useSession();
+
+  if (!data) return null;
+
   return (
     <article>
       <article className="flex flex-col gap-2 items-center">
@@ -9,10 +15,13 @@ const UserBasicInfo = () => {
           JW
         </div>
         <Heading as="h3" size="3">
-          Jose Waldo
+          {data.user.name || "Nombre de usuario"}
         </Heading>
-        <Text>josferw@gmail.com</Text>
-        <Badge color="bronze">Administrador</Badge>
+        <Text>{data.user.email || "email@example.com"}</Text>
+        <Badge color={UserRoleConfig[data.user.role].color}>
+          {UserRoleConfig[data.user.role].label ||
+            UserRoleConfig[UserRole.USER].label}
+        </Badge>
       </article>
     </article>
   );

@@ -1,4 +1,3 @@
-
 export interface User {
   email: string;
   id: string;
@@ -9,11 +8,16 @@ export interface User {
 }
 
 export interface Habitacion {
-  numero_habitacion: string;
+  numero_habitacion: number;
   costo_dia: number;
   libre: boolean;
-  price: number;
   reservas: Reserva[];
+}
+
+export interface FormHabitacion {
+  numero_habitacion: number;
+  costo_dia: number;
+  libre: boolean;
 }
 
 export interface Reserva {
@@ -21,7 +25,7 @@ export interface Reserva {
   habitacion: Habitacion;
   numero_habitacion: number;
   usuario: User;
-  estado: EstadoReserva; 
+  estado: EstadoReserva;
 }
 export enum UserRole {
   ADMIN = "ADMIN",
@@ -33,6 +37,28 @@ export enum EstadoReserva {
   checkin = "checkin",
   checkout = "checkout",
 }
+
+interface ReservaConfig {
+  color: "red" | "green" | "blue";
+  label: string;
+}
+
+export const EstadoReservaConfig: {
+  [key in EstadoReserva]: ReservaConfig;
+} = {
+  [EstadoReserva.reservado]: {
+    color: "red",
+    label: "Reservado",
+  },
+  [EstadoReserva.checkin]: {
+    color: "green",
+    label: "Checkin",
+  },
+  [EstadoReserva.checkout]: {
+    color: "blue",
+    label: "Checkout",
+  },
+};
 
 interface RoleConfig {
   color: "red" | "green";
