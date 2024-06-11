@@ -5,6 +5,7 @@ import NextAuth, { NextAuthOptions } from "next-auth";
 import Auth0Provider from "next-auth/providers/auth0";
 
 const options: NextAuthOptions = {
+  // Callback para agregar el campo role al objeto de sesión
   callbacks: {
     async session({ session, user }) {
       const usuario = await prisma.user.findUnique({
@@ -35,8 +36,8 @@ const options: NextAuthOptions = {
       clientId: `${process.env.AUTH0_CLIENT_ID}`,
       clientSecret: `${process.env.AUTH0_CLIENT_SECRET}`,
       async profile(profile) {
+        // rol sea USER por defecto
         return {
-          // agregar el campo role
           id: profile.sub,
           name: profile.name,
           email: profile.email,
