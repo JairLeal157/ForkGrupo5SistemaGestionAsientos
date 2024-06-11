@@ -4,7 +4,6 @@ import Sidebar from "@/components/sidebar/sidebar";
 import { useSession } from "next-auth/react";
 import { useEffect } from "react";
 import HashLoader from "react-spinners/HashLoader";
-import { useEffect } from "react";
 import { useRouter } from "next/router";
 import { havePermission } from "../sidebar/sidebar-data";
 import { UserRole } from "@/types/types";
