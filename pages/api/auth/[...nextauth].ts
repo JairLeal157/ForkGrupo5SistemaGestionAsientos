@@ -35,11 +35,6 @@ const options: NextAuthOptions = {
       clientId: `${process.env.AUTH0_CLIENT_ID}`,
       clientSecret: `${process.env.AUTH0_CLIENT_SECRET}`,
       async profile(profile) {
-        const user = await prisma.user.findFirst({
-          where: {
-            email: profile.email,
-          },
-        });
         return {
           // agregar el campo role
           id: profile.sub,
@@ -54,6 +49,8 @@ const options: NextAuthOptions = {
   adapter: PrismaAdapter(prisma),
 };
 
-export default (req: NextApiRequest, res: NextApiResponse) =>
+const handler = (req: NextApiRequest, res: NextApiResponse) =>
   NextAuth(req, res, options);
+
+export default handler;
 export { options };

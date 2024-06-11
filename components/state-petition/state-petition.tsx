@@ -1,3 +1,6 @@
+/* eslint-disable import/no-default-export */
+
+
 import { ExclamationTriangleIcon } from "@radix-ui/react-icons";
 import { Callout, Spinner } from "@radix-ui/themes";
 

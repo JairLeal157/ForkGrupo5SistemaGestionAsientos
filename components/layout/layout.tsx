@@ -1,5 +1,8 @@
+/* eslint-disable import/no-default-export */
+
+import Sidebar from "@/components/sidebar/sidebar";
 import { useSession } from "next-auth/react";
-import Sidebar from "../sidebar/sidebar";
+import { useEffect } from "react";
 import HashLoader from "react-spinners/HashLoader";
 import { useEffect } from "react";
 import { useRouter } from "next/router";
@@ -41,8 +44,6 @@ const Layout = ({ children }: LayoutProps) => {
       </div>
     );
   }
-
-  console.log(data);
 
   return (
     <main className="flex h-screen">
