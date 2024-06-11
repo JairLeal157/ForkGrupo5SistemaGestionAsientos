@@ -26,7 +26,12 @@ export const sidebarData: { [key in UserRole]: SidebarData[] } = {
     {
       label: "Transacciones",
       icon: <ClipboardDocumentCheckIcon className="w-5 h-5" />,
-      href: "/dashboard/reservas",
+      href: "/dashboard/transacciones",
+    },
+    {
+      label: "Check-in / Check-out",
+      icon: <ClipboardDocumentCheckIcon className="w-5 h-5" />,
+      href: "/dashboard/reservas/checkinout",
     },
     {
       label: "Usuarios",
@@ -46,4 +51,8 @@ export const sidebarData: { [key in UserRole]: SidebarData[] } = {
       href: "/dashboard/reservas",
     },
   ],
+};
+
+export const havePermission = (role: UserRole, href: string) => {
+  return sidebarData[role].some((item) => item.href === href);
 };

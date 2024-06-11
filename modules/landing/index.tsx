@@ -2,11 +2,18 @@ import { Avatar, Button, Flex, Heading, Text, Tooltip } from "@radix-ui/themes";
 import { ArrowRightIcon, ArrowTopRightIcon } from "@radix-ui/react-icons";
 import Link from "next/link";
 import { signIn, useSession } from "next-auth/react";
+import { sidebarData } from "@/components/sidebar/sidebar-data";
+import { UserRole } from "@/types/types";
+import { useEffect } from "react";
 
 const LandingModule = () => {
   const { data } = useSession();
 
-  console.log(data);
+  useEffect(() => {
+    if (data === undefined) return;
+  }, [data]);
+
+  const directTo = sidebarData[data?.user.role as UserRole]?.at(0)?.href;
 
   return (
     <main className="min-h-screen flex flex-col">
@@ -15,7 +22,7 @@ const LandingModule = () => {
           <Heading as="h1">HotelEase</Heading>
           <Link
             className="border-b-[2px] border-transparent hover:border-b-[2px] hover:border-[#3d0f00ab] transition-all"
-            href="/dashboard/usuarios">
+            href={directTo || "/"}>
             Dashboard
           </Link>
           {data ? (

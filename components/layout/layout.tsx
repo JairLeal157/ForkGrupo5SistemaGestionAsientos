@@ -2,6 +2,9 @@ import { useSession } from "next-auth/react";
 import Sidebar from "../sidebar/sidebar";
 import HashLoader from "react-spinners/HashLoader";
 import { useEffect } from "react";
+import { useRouter } from "next/router";
+import { havePermission } from "../sidebar/sidebar-data";
+import { UserRole } from "@/types/types";
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -9,12 +12,15 @@ interface LayoutProps {
 
 const Layout = ({ children }: LayoutProps) => {
   const { data, status } = useSession();
+  const router = useRouter();
 
   useEffect(() => {
     if (data === undefined) return;
     if (status === "unauthenticated") {
       window.location.href = "/auth/signin";
     }
+    if (havePermission(data?.user.role as UserRole, router.pathname)) return;
+    router.push("/403");
   }, [data, status]);
 
   if (status === "loading") {
