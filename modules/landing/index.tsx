@@ -40,8 +40,8 @@ const LandingModule = () => {
           )}
         </Flex>
       </header>
-      <section className="flex-1 flex w-[80%] gap-8 mx-auto items-center justify-between">
-        <div className="flex flex-col gap-4 ">
+      <section className="flex-1 flex flex-col-reverse my-8 md:my-0 md:flex-row w-[80%] gap-8 mx-auto items-center justify-between">
+        <div className="flex flex-col gap-4">
           <Heading size="2" className="uppercase" color="bronze">
             La Nueva Forma de Reservar y Administrar Hoteles
           </Heading>
@@ -64,7 +64,7 @@ const LandingModule = () => {
         <img
           src="https://images.unsplash.com/photo-1618773928121-c32242e63f39?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
           alt="Habitación de un hotel"
-          className="w-[60%] h-[50%] object-cover rounded-lg shadow-lg"
+          className="w-[100%] h-[300px] object-cover rounded-lg shadow-lg"
         />
       </section>
     </main>
