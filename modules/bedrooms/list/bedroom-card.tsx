@@ -33,17 +33,15 @@ const BedroomCard = ({ userId, bedroom }: BedroomCardProps) => {
 
   const handleReservar = async () => {
     try {
-      setStatePetition({ status: "loading", message: "Creando habitación" });
+      setStatePetition({ status: "loading", message: "Reservando..." });
       const response = await createReserva({
         variables: {
           usuarioId: userId,
           numeroHabitacion: bedroom.numero_habitacion,
         },
       });
-      if (!response.data)
-        throw new Error("No se ha podido crear la habitación");
+      if (!response.data) throw new Error("No se ha podido hacer la reserva");
       console.log(response.data);
-      // const reserva = response.data?.createHabitacion.numero_habitacion;
       setStatePetition({
         status: "success",
         message: `La reserva ha sido creada correctamente`,
@@ -51,7 +49,7 @@ const BedroomCard = ({ userId, bedroom }: BedroomCardProps) => {
     } catch (error) {
       setStatePetition({
         status: "error",
-        message: "Ha ocurrido un error al crear la habitación",
+        message: "Ha ocurrido un error al hacer la reserva",
       });
     }
   };

@@ -8,7 +8,6 @@ import { UserRole } from "@/types/types";
 import {
   BuildingOffice2Icon,
   ClipboardDocumentCheckIcon,
-  Cog6ToothIcon,
   UsersIcon,
 } from "@heroicons/react/24/outline";
 
@@ -34,11 +33,6 @@ export const sidebarData: { [key in UserRole]: SidebarData[] } = {
       icon: <UsersIcon className="w-5 h-5" />,
       href: "/dashboard/usuarios",
     },
-    {
-      label: "Pefil",
-      icon: <Cog6ToothIcon className="w-5 h-5" />,
-      href: "/dashboard/usuarios/perfil",
-    },
   ],
   [UserRole.USER]: [
     {
@@ -50,11 +44,6 @@ export const sidebarData: { [key in UserRole]: SidebarData[] } = {
       label: "Reservas",
       icon: <ClipboardDocumentCheckIcon className="w-5 h-5" />,
       href: "/dashboard/reservas",
-    },
-    {
-      label: "Pefil",
-      icon: <Cog6ToothIcon className="w-5 h-5" />,
-      href: "/dashboard/usuarios/perfil",
     },
   ],
 };

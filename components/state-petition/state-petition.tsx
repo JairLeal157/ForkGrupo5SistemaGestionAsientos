@@ -15,7 +15,7 @@ const StatePetition = ({ statePetition }: StatePetitionProps) => {
         <Callout.Root
           color="blue"
           role="alert"
-          className="fixed z-10 top-4 right-4 w-fit">
+          className="fixed z-[999] top-4 right-4 w-fit">
           <Callout.Icon>
             <Spinner size="2" />
           </Callout.Icon>
@@ -26,7 +26,7 @@ const StatePetition = ({ statePetition }: StatePetitionProps) => {
         <Callout.Root
           color="green"
           role="alert"
-          className="fixed z-10 top-4 right-4 w-fit">
+          className="fixed z-[999] top-4 right-4 w-fit">
           <Callout.Icon>
             <ExclamationTriangleIcon />
           </Callout.Icon>
@@ -37,7 +37,7 @@ const StatePetition = ({ statePetition }: StatePetitionProps) => {
         <Callout.Root
           color="red"
           role="alert"
-          className="fixed z-10 top-4 right-4 w-fit">
+          className="fixed z-[999] top-4 right-4 w-fit">
           <Callout.Icon>
             <ExclamationTriangleIcon />
           </Callout.Icon>

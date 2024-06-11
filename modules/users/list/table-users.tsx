@@ -1,14 +1,5 @@
 import { User, UserRole, UserRoleConfig } from "@/types/types";
-import {
-  Avatar,
-  Badge,
-  Button,
-  Table,
-  AlertDialog,
-  Flex,
-  Dialog,
-} from "@radix-ui/themes";
-import DeleteUser from "./delete-user";
+import { Avatar, Badge, Button, Table, Dialog } from "@radix-ui/themes";
 import EditUser from "./edit-user";
 
 interface TableRowProps {
@@ -43,20 +34,9 @@ const TableRow = ({ user }: TableRowProps) => {
             </Button>
           </Dialog.Trigger>
           <Dialog.Content maxWidth="450px">
-            <EditUser />
+            <EditUser name={user.name} userId={user.id} role={user.role} />
           </Dialog.Content>
         </Dialog.Root>
-
-        <AlertDialog.Root>
-          <AlertDialog.Trigger>
-            <Button color="red" variant="ghost" size="1" ml="4">
-              Eliminar
-            </Button>
-          </AlertDialog.Trigger>
-          <AlertDialog.Content maxWidth="450px">
-            <DeleteUser />
-          </AlertDialog.Content>
-        </AlertDialog.Root>
       </Table.Cell>
     </Table.Row>
   );

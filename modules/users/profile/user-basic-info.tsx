@@ -11,8 +11,8 @@ const UserBasicInfo = () => {
   return (
     <article>
       <article className="flex flex-col gap-2 items-center">
-        <div className="bg-purple-500 w-20 h-20 rounded-full grid place-items-center text-2xl font-bold">
-          JW
+        <div className="bg-purple-500 uppercase w-20 h-20 rounded-full grid place-items-center text-2xl font-bold">
+          {data.user.name?.charAt(0) || "U"}
         </div>
         <Heading as="h3" size="3">
           {data.user.name || "Nombre de usuario"}
