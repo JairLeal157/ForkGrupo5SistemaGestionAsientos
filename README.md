@@ -3,6 +3,12 @@ Esta es una aplicación web diseñada para gestionar las reservas de un hotel. L
 
 Los administradores cuentan con secciones especiales donde pueden visualizar las transacciones realizadas, crear habitaciones, ver los usuarios existentes y modificar sus permisos.
 
+link despliegue: https://grupo5sistemagestionasientos-asientos.vercel.app/
+
+AdminEmail: admin@example.com
+
+AdminPassword: Admin123$
+
 ## Características
 
 ### Para Usuarios:
