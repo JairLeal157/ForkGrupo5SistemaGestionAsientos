@@ -56,7 +56,7 @@ const LandingModule = () => {
           </Text>
           <div className="w-fit">
             <Button color="gray" highContrast>
-              <Link href="/">Reserva Ahora</Link>
+              <Link href="/dashboard/habitaciones">Reserva Ahora</Link>
               <ArrowRightIcon />
             </Button>
           </div>
