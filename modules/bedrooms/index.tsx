@@ -1,13 +1,26 @@
 import { Box, Tabs, Text } from "@radix-ui/themes";
 import TabListBedrooms from "./list/tab-list-bedrooms";
 import TabCreateBedroom from "./create/tab-create-bedroom";
+import { useSession } from "next-auth/react";
 
 const BedroomsModule = () => {
+  const { data } = useSession();
+
+  if (!data) {
+    return <Text>Debes iniciar sesión para ver este contenido</Text>;
+  }
+
   return (
     <Tabs.Root defaultValue="listBedrooms">
       <Tabs.List>
-        <Tabs.Trigger value="listBedrooms">Habitaciones</Tabs.Trigger>
-        <Tabs.Trigger value="createBedroom">Crear Habitación</Tabs.Trigger>
+        {data.user.role === "ADMIN" ? (
+          <>
+            <Tabs.Trigger value="listBedrooms">Habitaciones</Tabs.Trigger>
+            <Tabs.Trigger value="createBedroom">Crear Habitación</Tabs.Trigger>
+          </>
+        ) : (
+          <Tabs.Trigger value="listBedrooms">Habitaciones</Tabs.Trigger>
+        )}
       </Tabs.List>
 
       <Box pt="3">
