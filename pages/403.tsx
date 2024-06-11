@@ -1,4 +1,4 @@
-import { Button, Heading, Text } from "@radix-ui/themes";
+import { Button, Heading } from "@radix-ui/themes";
 import Link from "next/link";
 
 const Error403 = () => {

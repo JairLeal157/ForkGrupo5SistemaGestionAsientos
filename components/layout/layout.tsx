@@ -5,7 +5,7 @@ import { useSession } from "next-auth/react";
 import { useEffect } from "react";
 import HashLoader from "react-spinners/HashLoader";
 import { useRouter } from "next/router";
-import { havePermission } from "../sidebar/sidebar-data";
+import { havePermission } from "@/components/sidebar/sidebar-data";
 import { UserRole } from "@/types/types";
 
 interface LayoutProps {
